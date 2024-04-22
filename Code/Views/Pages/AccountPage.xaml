@@ -15,21 +15,39 @@
     d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
 
-    <Grid VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <StackPanel>
 
-        <ui:Button
-            Grid.Column="0"
-            Command="{Binding ViewModel.CounterIncrementCommand, Mode=OneWay}"
-            Content="Click me!"
-            Icon="Fluent24" />
-        <TextBlock
-            Grid.Column="1"
-            Margin="12,0,0,0"
-            VerticalAlignment="Center"
-            Text="{Binding ViewModel.Counter, Mode=OneWay}" />
-    </Grid>
+        <Image Source="pack://application:,,,/Assets/avatar.png" Width="100" Height="100" HorizontalAlignment="Left" Margin="0 0 0 20 " />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.RowSpan="4" Grid.Column="0" Margin="0,0,0,0">
+                <TextBlock Text="Mã người dùng:" HorizontalAlignment="Left" Margin="0,0,10,10" VerticalAlignment="Center" FontWeight="Bold" />
+                <TextBlock Text="{Binding UserID}" TextWrapping="Wrap" Margin="0,0,10,10" VerticalAlignment="Center" />
+
+                <TextBlock Text="Ngày sinh:" HorizontalAlignment="Left" Margin="0,0,10,10" VerticalAlignment="Center" FontWeight="Bold" />
+                <TextBlock Text="{Binding DOB}" TextWrapping="Wrap" Margin="0,0,10,10" VerticalAlignment="Center" />
+
+                <TextBlock Text="Chức vụ:" HorizontalAlignment="Left" Margin="0,0,10,10" VerticalAlignment="Center" FontWeight="Bold" />
+                <TextBlock Text="{Binding Roles}" TextWrapping="Wrap" Margin="0,0,10,10" VerticalAlignment="Center" />
+
+                <TextBlock Text="Tên đăng nhập:" HorizontalAlignment="Left" Margin="0,0,10,10" VerticalAlignment="Center" FontWeight="Bold" />
+                <TextBlock Text="{Binding UserName}" TextWrapping="Wrap" Margin="0,0,10,10" VerticalAlignment="Center" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Các chức năng" FontWeight="Bold"/>
+                <TextBlock Text="{Binding UserPermmission}" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0,10,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <ui:Button Content="Đổi mật khẩu" Icon="LockClosed24" VerticalAlignment="Bottom" Appearance="Primary"/>
+
+    </StackPanel>
+    
 </Page>
