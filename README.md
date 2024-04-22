@@ -38,9 +38,10 @@
 # CÔNG NGHỆ SỬ DỤNG
 - Phần mềm Quản Lý Thư Viện sử dụng các công nghệ liệt kê dưới đây:
   + Design Pattern: Mô hình 3 lớp 1 tầng
-  + Sử dụng công nghệ WinForm, lập trình bằng ngôn ngữ C# trên nền tảng .NET phiên bản 4.7
+  + Sử dụng công nghệ WPF, lập trình bằng ngôn ngữ C# trên nền tảng .NET phiên bản 8.0
+  + Sử dụng [WPF UI](https://wpfui.lepo.co/) cho Framework giao diện người dùng.
   + Quản lý database bằng MS SQL Server phiên bản 2012
-  + Sử dụng API Place Autocomplete Address của Google
+
 
 # MÔI TRƯỜNG CÀI ĐẶT VÀ SỬ DỤNG PHẦN MỀM
 - Cài đặt và sử dụng trên môi trường HĐH Windows từ phiên bản Windows 7 trở về sau

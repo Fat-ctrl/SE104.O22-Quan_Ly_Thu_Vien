@@ -1,17 +1,18 @@
-﻿using System.Windows.Controls;
+﻿using QLTV_Nhom13.ViewModels.Pages;
+using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Pages
 {
-    /// <summary>
-    /// Interaction logic for AccountPage.xaml
-    /// </summary>
-    public partial class AccountPage : Page
+    public partial class AccountPage : INavigableView<AccountViewModel>
     {
-        public AccountPage()
-        {
-            /*private bool _isInitialized = false;*/
+        public AccountViewModel ViewModel { get; }
 
-            /*InitializeComponent();*/
+        public AccountPage(AccountViewModel viewModel)
+        {
+            ViewModel = viewModel;
+            DataContext = this;
+
+            InitializeComponent();
         }
     }
 }

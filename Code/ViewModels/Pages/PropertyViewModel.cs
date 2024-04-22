@@ -3,8 +3,8 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.ViewModels.Pages
 {
-    public partial class AccountViewModel : ObservableObject
+    public partial class PropertyViewModel : ObservableObject
     {
-        public AccountViewModel() { }
+        public PropertyViewModel() { }
     }
 }

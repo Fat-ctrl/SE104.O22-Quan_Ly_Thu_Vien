@@ -1,15 +1,18 @@
-﻿using System.Windows.Controls;
+﻿using QLTV_Nhom13.ViewModels.Pages;
+using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Pages
 {
-    /// <summary>
-    /// Interaction logic for Book.xaml
-    /// </summary>
-    public partial class BookPage : Page
+    public partial class BookPage : INavigableView<BookViewModel>
     {
-        public BookPage()
+        public BookViewModel ViewModel { get; }
+
+        public BookPage(BookViewModel viewModel)
         {
-            /*InitializeComponent();*/
+            ViewModel = viewModel;
+            DataContext = this;
+
+            InitializeComponent();
         }
     }
 }
