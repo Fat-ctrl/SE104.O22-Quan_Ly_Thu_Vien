@@ -6,14 +6,13 @@ using Wpf.Ui.Controls;
 namespace QLTV_Nhom13.Views.Windows
 {
     /// <summary>
-    /// Login page
+    /// Interaction logic for ChangePasswordWindow.xaml
     /// </summary>
-/*    public partial class LoginWindow : Window
+/*    public partial class ChangePasswordWindow : Window
     {
-        public LoginWindow()
+        public ChangePasswordWindow()
         {
             InitializeComponent();
         }
-
     }*/
 }

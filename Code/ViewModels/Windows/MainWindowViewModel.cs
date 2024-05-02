@@ -11,12 +11,6 @@ namespace QLTV_Nhom13.ViewModels.Windows
         [ObservableProperty]
         private ObservableCollection<object> _menuItems = new()
         {
-/*            new NavigationViewItem()
-            {
-                Content = "Tài khoản",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.PersonCircle24 },
-                TargetPageType = typeof(Views.Pages.AccountPage)
-            },*/
             new NavigationViewItem()
             {
                 Content = "Độc giả",
@@ -50,7 +44,7 @@ namespace QLTV_Nhom13.ViewModels.Windows
             new NavigationViewItem()
             {
                 Content = "Quản lí người dùng",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.PeopleTeam24 },
+                Icon = new SymbolIcon { Symbol = SymbolRegular.PeopleLock24 },
                 TargetPageType = typeof(Views.Pages.ManageUserPage)
             },
             new NavigationViewItem()

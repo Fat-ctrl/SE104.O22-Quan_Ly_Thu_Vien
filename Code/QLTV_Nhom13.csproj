@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\avatar.png" />
     <None Remove="Assets\logo-uit.png" />
     <None Remove="Assets\wpfui-icon-256.png" />
     <None Remove="Assets\wpfui-icon-1024.png" />
@@ -28,6 +29,9 @@
 
   <ItemGroup>
     <Resource Include="Assets\logo-uit.png" />
+    <Resource Include="Assets\avatar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\wpfui-icon-256.png" />
     <Resource Include="Assets\wpfui-icon-1024.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
