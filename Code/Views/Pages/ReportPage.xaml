@@ -15,14 +15,5 @@
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
 
-    <StackPanel>
-        <Menu>
-            <MenuItem Header="Độc giả"/>
-            <MenuItem Header="Loại độc giả"/>
-        </Menu>
-        <ui:DataGrid x:Name="dataGrid1" 
-        Height="600" Margin="12"
-        AutoGenerateColumns="True"
-         />
-    </StackPanel>
+    
 </Page>

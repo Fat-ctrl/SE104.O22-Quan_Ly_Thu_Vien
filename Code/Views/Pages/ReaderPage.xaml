@@ -1,29 +1,80 @@
 ﻿<Page
-    x:Class="QLTV_Nhom13.Views.Pages.ReaderPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:QLTV_Nhom13.Views.Pages"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    Title="ReaderPage"
-    d:DataContext="{d:DesignInstance local:ReaderPage,
-                                     IsDesignTimeCreatable=False}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
-    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-    mc:Ignorable="d">
+  x:Class="QLTV_Nhom13.Views.Pages.ReaderPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:local="clr-namespace:QLTV_Nhom13.Views.Pages"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+  Title="Reader Management"
+  d:DataContext="{d:DesignInstance local:ReaderPage, IsDesignTimeCreatable=False}"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+  ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+  Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+  mc:Ignorable="d">
 
-    <StackPanel>
-        <Menu>
-            <MenuItem Header="Độc giả"/>
-            <MenuItem Header="Loại độc giả"/>
-        </Menu>
-        <ui:DataGrid x:Name="dataGrid1" 
-        Height="600" Margin="12"
-        AutoGenerateColumns="True"
-         />
-    </StackPanel>
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Độc giả" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel>
+                <Grid Margin="0 0 12 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:AutoSuggestBox x:Name="searchBox" Grid.Column="0" Margin="0 24 8 12" Width="350" PlaceholderText="Tìm độc giả..." HorizontalAlignment="Left"/>
+
+                    <ui:Button x:Name="refreshButton" Grid.Column="1" Margin="0 24 8 12" Content="Làm mới" Command="{Binding RefreshCommand}" HorizontalAlignment="Left" Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                    <ui:Button x:Name="addReaderButton" Grid.Column="2" Margin="0 24 8 12" Content="Thêm độc giả" Command="{Binding AddReaderCommand}" Icon="{ui:SymbolIcon Add24}"/>
+                </Grid>
+
+                <ui:DataGrid x:Name="readerGrid" Margin="0" ItemsSource="{Binding Readers, Mode=TwoWay}" AutoGenerateColumns="False">
+                    <DataGridTextColumn Header="Reader ID" Binding="{Binding ReaderId}" Width="100" />
+                    <DataGridTextColumn Header="Reader Name" Binding="{Binding ReaderName}" Width="200" />
+                    <DataGridTextColumn Header="Reader Type" Binding="{Binding ReaderTypeName}" Width="150" />
+                    <DataGridTextColumn Header="# Borrowing Books" Binding="{Binding NumberOfBorrowingBooks}" Width="120" />
+                    <DataGridTextColumn Header="Expiring Date" Binding="{Binding ExpiringDate}" Width="120" />
+                    <DataGridTextColumn Header="Late Due Fee" Binding="{Binding LateDueFee}" Width="100" />
+                </ui:DataGrid>
+            </StackPanel>
+        </TabItem>
+        <TabItem IsSelected="True">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Loại độc giả" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel>
+                <Grid Margin="0 0 12 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:TextBox x:Name="readerTypeNameTextBox" Grid.Column="0" Margin="0 24 8 12" Width="350" PlaceholderText="Tên loại độc giả..." />
+
+                    <ui:Button x:Name="addReaderTypeButton" Grid.Column="1" Margin="0 24 8 12" Content="Thêm loại độc giả" Command="{Binding AddReaderTypeCommand}" HorizontalAlignment="Left" Icon="{ui:SymbolIcon Add24}" />
+                </Grid>
+
+                <ui:DataGrid x:Name="readerTypeGrid" Margin="0" ItemsSource="{Binding ReaderTypes, Mode=TwoWay}" AutoGenerateColumns="False">
+                    <DataGridTextColumn Header="Reader Type ID" Binding="{Binding ReaderTypeId}" Width="100" />
+                    <DataGridTextColumn Header="Reader Type Name" Binding="{Binding ReaderTypeName}" Width="200" />
+                </ui:DataGrid>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+
 </Page>
