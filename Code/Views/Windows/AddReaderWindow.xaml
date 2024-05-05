@@ -1,0 +1,130 @@
+﻿<ui:FluentWindow
+    x:Class="QLTV_Nhom13.Views.Windows.AddReaderWindow"
+    Title="AddReaderWindow"
+    xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Width="900"
+    Height="700"
+    d:DataContext="{d:DesignInstance local:MainWindow,
+                                     IsDesignTimeCreatable=True}"
+    d:DesignHeight="900"
+    d:DesignWidth="700"
+    d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Round"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <StackPanel>
+        <ui:TitleBar
+            x:Name="TitleBar"
+            Title="{Binding ViewModel.ApplicationTitle}"
+            Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:TextBlock Text="THÊM THẺ ĐỘC GIẢ" HorizontalAlignment="Center" Margin="0 12 0 24" FontTypography="Title" />
+
+        <ui:TextBlock Text="Họ tên*" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="Name" Margin="24 0 24 12"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0">
+                <ui:TextBlock Text="Ngày sinh*" Margin="24 12 0 12" FontTypography="BodyStrong"/>
+                <ui:CalendarDatePicker
+                    x:Name="DOBP"
+                    Content="Chọn ngày sinh"
+                    Date="{x:Static sys:DateTime.Today}"
+                    IsTodayHighlighted="True"
+                    Margin="24 0 0 12"/>            
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <ui:TextBlock Text="Loại độc giả*" Margin="0 12 0 12" FontTypography="BodyStrong"/>
+                <ui:DropDownButton Content="{Binding ReaderType}" x:Name="ReaderType">
+                    <ui:DropDownButton.Flyout>
+                        <ContextMenu>
+                            <MenuItem Header="Giáo viên" Command="{Binding }" />
+                            <MenuItem Header="Sinh viên" Command="{Binding }" />
+                            <MenuItem Header="Khác" Command="{Binding }" />
+                        </ContextMenu>
+                    </ui:DropDownButton.Flyout>
+                </ui:DropDownButton>
+            </StackPanel>
+        </Grid>
+
+        <ui:TextBlock Text="Địa chỉ" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="Address" Margin="24 0 24 12"/>
+
+        <ui:TextBlock Text="Email" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="Email" Margin="24 0 24 12"/>
+
+        <ui:TextBlock Text="Tên đăng nhập*" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="Username" Margin="24 0 24 12"/>
+
+        <ui:TextBlock Text="Mật khẩu*" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:PasswordBox x:Name="Password" Margin="24 0 24 12"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <ui:TextBlock Text="Chức vụ" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+                <ui:TextBox x:Name="Role" Margin="24 0 24 12"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <ui:TextBlock Text="Nhóm người dùng" Margin="0 0 0 12" FontTypography="BodyStrong"/>
+                <ui:DropDownButton Content="{Binding UserType}" x:Name="UserType">
+                    <ui:DropDownButton.Flyout>
+                        <ContextMenu>
+                            <MenuItem Header="Giáo viên" Command="{Binding }" />
+                            <MenuItem Header="Sinh viên" Command="{Binding }" />
+                            <MenuItem Header="Khác" Command="{Binding }" />
+                        </ContextMenu>
+                    </ui:DropDownButton.Flyout>
+                </ui:DropDownButton>
+            </StackPanel>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <ui:TextBlock Text="Ngày lập thẻ*" Margin="24 12 0 12" FontTypography="BodyStrong"/>
+                <ui:CalendarDatePicker
+                    x:Name="LibraryCardCreationDate"
+                    Content="{x:Static sys:DateTime.Today}"
+                    Date="{x:Static sys:DateTime.Today}"
+                    IsTodayHighlighted="True"
+                    Margin="24 0 0 12"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1">
+                <ui:TextBlock Text="Ngày hết hạn" Margin="0 12 0 12" FontTypography="BodyStrong"/>
+                <ui:TextBlock Text="{Binding ExpirationDate}" FontTypography="Body"/>
+            </StackPanel>
+        </Grid>
+        <ui:Button Content="Thêm" HorizontalAlignment="Center" Margin="0 12 0 12" Appearance="Primary" Width="130"/>
+    </StackPanel>
+</ui:FluentWindow>

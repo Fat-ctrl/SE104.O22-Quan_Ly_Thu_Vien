@@ -16,7 +16,7 @@
   mc:Ignorable="d">
 
     <TabControl>
-        <TabItem>
+        <TabItem  IsSelected="True">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <ui:SymbolIcon Margin="0,0,6,0" />
@@ -49,7 +49,7 @@
                 </ui:DataGrid>
             </StackPanel>
         </TabItem>
-        <TabItem IsSelected="True">
+        <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <ui:SymbolIcon Margin="0,0,6,0" />
