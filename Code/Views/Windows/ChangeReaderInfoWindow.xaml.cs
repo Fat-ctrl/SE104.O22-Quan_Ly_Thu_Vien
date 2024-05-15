@@ -7,15 +7,14 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-    /// <summary>
-    /// Login page
+/*    /// <summary>
+    /// Interaction logic for ChangeReaderInfo.xaml
     /// </summary>
-/*    public partial class LoginWindow : Window
+    public partial class ChangeReaderInfoWindow : Window
     {
-        public LoginWindow()
+        public ChangeReaderInfoWindow()
         {
             InitializeComponent();
         }
-
     }*/
 }

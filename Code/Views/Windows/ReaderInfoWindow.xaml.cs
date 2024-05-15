@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using QLTV_Nhom13.ViewModels.Windows;
+using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Wpf.Ui;
+using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-    /// <summary>
+/*    /// <summary>
     /// Interaction logic for ReaderInfoPage.xaml
     /// </summary>
     public partial class ReaderInfoWindow : Window
@@ -23,5 +16,5 @@ namespace QLTV_Nhom13.Views.Windows
         {
             InitializeComponent();
         }
-    }
+    }*/
 }

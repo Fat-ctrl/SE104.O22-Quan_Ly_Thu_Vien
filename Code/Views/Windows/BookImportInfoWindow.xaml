@@ -1,0 +1,74 @@
+﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.BookImportInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="BookImportInfoWindow" 
+        Width="1100"
+        Height="750"
+        d:DataContext="{d:DesignInstance local:MainWindow,
+                                       IsDesignTimeCreatable=True}"
+        d:DesignHeight="750"
+        d:DesignWidth="1000"
+        d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <ui:TitleBar
+        x:Name="TitleBar"
+        Title="{Binding ViewModel.ApplicationTitle}"
+        Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:TextBlock Text="THÔNG TIN TỰA SÁCH" HorizontalAlignment="Center" Margin="0 12 0 24" FontTypography="Title" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <ui:TextBlock Text="Số phiếu nhập: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+                <ui:TextBlock Text="Ngày nhập: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+                <ui:TextBlock Text="Tổng tiền: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <ui:TextBlock Text="{Binding BookImportID}" FontTypography="Body" Margin="0 6 24 6"/>
+                <ui:TextBlock Text="{Binding BookImportDate}" FontTypography="Body" Margin="0 6 24 6"/>
+                <ui:TextBlock Text="{Binding BookImportTotalAmount}" FontTypography="Body" Margin="0 6 24 6"/>
+            </StackPanel>
+
+        </Grid>
+
+        <ui:TextBlock Text="CHI TIẾT PHIẾU NHẬP" HorizontalAlignment="Center" FontTypography="Title" Margin="0 24 0 24"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ui:DataGrid ItemsSource="{Binding BookImportDetailDataGrid}" 
+                     Height="Auto"
+                     Grid.Column="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sách" Binding="{Binding BookID}" Width="Auto"/>
+                    <DataGridTextColumn Header="Tên tựa sách" Binding="{Binding BookTitle}" Width="Auto"/>
+                    <DataGridTextColumn Header="Đơn giá" Binding="{Binding Pricing}" Width="Auto"/>
+                    <DataGridTextColumn Header="Số lượng nhập" Binding="{Binding Quantity}" Width="Auto"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding TotalAmount}" Width="Auto"/>
+                </DataGrid.Columns>
+            </ui:DataGrid>
+        </Grid>
+
+    </StackPanel>
+</ui:FluentWindow>

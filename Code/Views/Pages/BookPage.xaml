@@ -7,13 +7,456 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="BookPage"
-    d:DataContext="{d:DesignInstance local:BookPage,
-                                     IsDesignTimeCreatable=False}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance local:BookPage, IsDesignTimeCreatable=False}"
+    d:DesignHeight="750"
+    d:DesignWidth="1100"
     ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ui:TextBox x:Name="PART_TextBox"
+                            Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', 
+                            RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                            PlaceholderText="Chọn ngày/tháng/năm"/>          
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
+    <TabControl>
+        <TabItem  IsSelected="True">
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Tựa sách" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:Button x:Name="ShowBookTitleButton" 
+                               Grid.Column="1" 
+                               Margin="0 24 8 12" 
+                               Content="Hiện tựa sách" 
+                               Command="{Binding ShowBookTitle}" 
+                               Icon="{ui:SymbolIcon Eye24}"/>
+
+                    <ui:Button x:Name="HideBookTitleButton" 
+                               Grid.Column="2" 
+                               Margin="0 24 8 12" 
+                               Content="Ẩn tựa sách" 
+                               Command="{Binding HideBookTitle}" 
+                               Icon="{ui:SymbolIcon EyeOff24}"/>
+
+                    <ui:Button x:Name="RefreshBookTitleButton" 
+                               Grid.Column="3" 
+                               Margin="0 24 8 12" 
+                               Content="Làm mới" 
+                               Command="{Binding BookTitleRefreshCommand}" 
+                               HorizontalAlignment="Right" 
+                               Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                    <StackPanel Grid.Column="4" 
+                                HorizontalAlignment="Right" 
+                                Margin="0 12 0 0">
+                        <ui:AutoSuggestBox x:Name="BookTitleAutoSuggestBox"
+                                           PlaceholderText="Mã, tên, tác giả" 
+                                           Margin="0 0 0 8"/>
+                        <ComboBox
+                            MinWidth="300"
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="Lọc thể loại" />
+                            <ComboBoxItem Content="Green" />
+                            <ComboBoxItem Content="Red" />
+                            <ComboBoxItem Content="Yellow" />
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <ui:DataGrid x:Name="BookTitleDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding BookTitleDataGrid, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã tựa sách" Binding="{Binding BookTitleId}" Width="Auto" />
+                        <DataGridTextColumn Header="Tên tựa sách" Binding="{Binding BookTitle}" Width="Auto" />
+                        <DataGridTextColumn Header="Thể loại" Binding="{Binding BookGenre}" Width="Auto" />
+                        <DataGridTextColumn Header="Tác giả" Binding="{Binding Authors}" Width="Auto" />
+                        <DataGridTextColumn Header="Đã ẩn" Binding="{Binding IsHidden}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+
+                <ui:Button x:Name="AddBookTitleButton" 
+                           Margin="0 12 0 12" 
+                           Content="Thêm tựa sách" 
+                           Command="{Binding AddBookTitle}" 
+                           HorizontalAlignment="Right" 
+                           Icon="{ui:SymbolIcon Add24}"/>
+
+            </StackPanel>
+            
+            
+        </TabItem>
+
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Sách" />
+                </StackPanel>
+            </TabItem.Header>
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:Button x:Name="ShowBookButton" 
+                               Grid.Column="3" 
+                               Margin="0 24 8 12" 
+                               Content="Hiện sách" 
+                               Command="{Binding ShowBookTitle}" 
+                               Icon="{ui:SymbolIcon Eye24}"/>
+
+                    <ui:Button x:Name="HideBookButton" 
+                               Grid.Column="4" 
+                               Margin="0 24 8 12" 
+                               Content="Ẩn sách" 
+                               Command="{Binding ShowBookTitle}" 
+                               Icon="{ui:SymbolIcon EyeOff24}"/>
+
+                    <ui:Button x:Name="RefreshBookButton" 
+                               Grid.Column="5" 
+                               Margin="0 24 8 12" 
+                               Content="Làm mới" 
+                               Command="{Binding RefreshCommand}" 
+                               HorizontalAlignment="Right" 
+                               Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                    <StackPanel Grid.Column="6" HorizontalAlignment="Right" Margin="0 12 0 0">
+                        <ui:AutoSuggestBox x:Name="BookIDAutoSuggestBox"
+                                           PlaceholderText="Mã sách" 
+                                           Margin="0 0 0 8"/>
+                        <ComboBox
+                            MinWidth="300"
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="Lọc tình trạng" />
+                            <ComboBoxItem Content="Green" />
+                            <ComboBoxItem Content="Red" />
+                            <ComboBoxItem Content="Yellow" />
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <ui:DataGrid x:Name="BookDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding BookDataGrid, Mode=TwoWay}"
+                             VerticalAlignment="Stretch"
+                             HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã sách" Binding="{Binding BookId}" Width="Auto" />
+                        <DataGridTextColumn Header="Mã tựa sách" Binding="{Binding BookTitleID}" Width="Auto" />
+                        <DataGridTextColumn Header="Tựa sách" Binding="{Binding BookTitle}" Width="Auto" />
+                        <DataGridTextColumn Header="Năm xuất bản" Binding="{Binding PublishYear}" Width="Auto" />
+                        <DataGridTextColumn Header="Nhà xuất bản" Binding="{Binding Publisher}" Width="Auto" />
+                        <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="Auto" />
+                        <DataGridTextColumn Header="Còn lại" Binding="{Binding Remaining}" Width="Auto" />
+                        <DataGridTextColumn Header="Đã ẩn" Binding="{Binding IsHidden}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+
+                <Grid HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ui:Button x:Name="AddNewBookButton" 
+                               Grid.Column="0"
+                               Margin="0 12 0 12" 
+                               Content="Nhập sách mới" 
+                               Command="{Binding HideBookTitle}" 
+                               Icon="{ui:SymbolIcon AddCircle24}"/>
+
+                    <ui:Button x:Name="AddExistingBookButton" 
+                               Grid.Column="1" 
+                               Margin="8 12 0 12" 
+                               Content="Nhập sách đã có" 
+                               Command="{Binding ShowBookTitle}"
+                               Icon="{ui:SymbolIcon CollectionsAdd24}"/>
+                </Grid>
+
+
+
+            </StackPanel>
+        </TabItem>
+        
+        
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Cuốn sách" />
+                </StackPanel>
+            </TabItem.Header>
+
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:Button x:Name="ShowBookStockButton" 
+                               Grid.Column="3" 
+                               Margin="0 24 8 12" 
+                               Content="Hiện cuốn sách" 
+                               Command="{Binding ShowBookStock}" 
+                               Icon="{ui:SymbolIcon Eye24}"/>
+
+                    <ui:Button x:Name="HideBookStockButton" 
+                               Grid.Column="4" 
+                               Margin="0 24 8 12" 
+                               Content="Ẩn cuốn sách" 
+                               Command="{Binding ShowBookStock}" 
+                               Icon="{ui:SymbolIcon EyeOff24}"/>
+
+                    <StackPanel Grid.Column="5" HorizontalAlignment="Right" Margin="0 12 0 0">
+                        <ui:AutoSuggestBox x:Name="BookStockAutoSuggestBox"
+                                           PlaceholderText="Mã, tên" 
+                                           Margin="0 0 0 8"/>
+                        <ComboBox
+                            MinWidth="300"
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="Lọc tình trạng" />
+                            <ComboBoxItem Content="Green" />
+                            <ComboBoxItem Content="Red" />
+                            <ComboBoxItem Content="Yellow" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--<StackPanel Grid.Column="6" 
+                                Margin="8 0 0 0">
+                        <ui:Button Content="Tìm kiếm"
+                                   Margin="0 14 0 13" 
+                                   Icon="{ui:SymbolIcon Search24}"
+                                   Width="132"/>
+                        <ui:Button Content="Lọc tình trạng"
+                                   Icon="{ui:SymbolIcon Filter24}"/>
+                    </StackPanel>-->
+                </Grid>
+
+                <ui:DataGrid x:Name="BookStockDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding BookStockDataGrid, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã cuốn sách" Binding="{Binding BookStockId}" Width="Auto" />
+                        <DataGridTextColumn Header="Mã sách" Binding="{Binding BookTitleID}" Width="Auto" />
+                        <DataGridTextColumn Header="Tựa sách" Binding="{Binding BookTitle}" Width="Auto" />
+                        <DataGridTextColumn Header="Tình trạng" Binding="{Binding Condition}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+
+
+
+            </StackPanel>
+
+
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Tác giả" />
+                </StackPanel>
+            </TabItem.Header>
+
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:TextBox x:Name="AddAuthorTextBox"
+                                MinWidth="300"
+                                PlaceholderText="Họ tên tác giả"
+                                Grid.Column="0"
+                                Margin="0 24 8 12"/>
+
+                    <ui:Button x:Name="AddAuthorButton" 
+                               Grid.Column="1" 
+                               Margin="0 24 8 12" 
+                               Content="Thêm tác giả" 
+                               Command="{Binding AddAuthorButton}" 
+                               Icon="{ui:SymbolIcon Add24}"/>
+
+                    <ui:Button x:Name="RefreshAuthorButton" 
+                               Grid.Column="2" 
+                               Margin="0 24 8 12" 
+                               Content="Làm mới" 
+                               Command="{Binding AuthorRefreshCommand}" 
+                               HorizontalAlignment="Right" 
+                               Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                </Grid>
+
+                <ui:DataGrid x:Name="AuthorDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding AuthorDataGrid, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã tác giả" Binding="{Binding AuthorId}" Width="Auto" />
+                        <DataGridTextColumn Header="Tên tác giả" Binding="{Binding AuthorName}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+
+
+
+            </StackPanel>
+
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Thể loại" />
+                </StackPanel>
+            </TabItem.Header>
+
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:TextBox x:Name="AddGenreTextBox"
+                                MinWidth="300"
+                                PlaceholderText="Tên thể loại"
+                                Grid.Column="0"
+                                Margin="0 24 8 12"/>
+
+                    <ui:Button x:Name="AddGenreButton" 
+                               Grid.Column="1" 
+                               Margin="0 24 8 12" 
+                               Content="Thêm thể loại" 
+                               Command="{Binding GenreAuthorButton}" 
+                               Icon="{ui:SymbolIcon Add24}"/>
+
+                    <ui:Button x:Name="RefreshGenreButton" 
+                               Grid.Column="2" 
+                               Margin="0 24 8 12" 
+                               Content="Làm mới" 
+                               Command="{Binding GenreRefreshCommand}" 
+                               HorizontalAlignment="Right" 
+                               Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                </Grid>
+
+                <ui:DataGrid x:Name="GenreDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding GenreDataGrid, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã thể loại" Binding="{Binding GenreId}" Width="Auto" />
+                        <DataGridTextColumn Header="Tên thể loại" Binding="{Binding GenreName}" Width="Auto" />
+                        <DataGridTextColumn Header="Số lượng" Binding="{Binding GenreQuantity}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+            </StackPanel>
+
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Margin="0,0,6,0" />
+                    <TextBlock Text="Phiếu nhập sách" />
+                </StackPanel>
+            </TabItem.Header>
+
+            <StackPanel>
+                <Grid Margin="0 0 0 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:Button x:Name="RefreshBookImportButton" 
+                               Grid.Column="0" 
+                               Margin="0 24 8 12" 
+                               Content="Làm mới" 
+                               Command="{Binding BookImportRefreshCommand}" 
+                               HorizontalAlignment="Right" 
+                               Icon="{ui:SymbolIcon ArrowSync24}"/>
+
+                    <StackPanel Grid.Column="5" HorizontalAlignment="Right" Margin="0 12 0 0">
+                        <ui:AutoSuggestBox x:Name="BookImportAutoSuggestBox"
+                               PlaceholderText="Số phiếu" 
+                               Margin="0 0 0 8"
+                               MinWidth="300"/>
+                        <DatePicker x:Name="BookImportDatePicker"/>
+                    </StackPanel>
+
+                </Grid>
+
+                <ui:DataGrid x:Name="BookImportDataGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding BookStockDataGrid, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Mã cuốn sách" Binding="{Binding BookStockId}" Width="Auto" />
+                        <DataGridTextColumn Header="Mã sách" Binding="{Binding BookTitleID}" Width="Auto" />
+                        <DataGridTextColumn Header="Tựa sách" Binding="{Binding BookTitle}" Width="Auto" />
+                        <DataGridTextColumn Header="Tình trạng" Binding="{Binding Condition}" Width="Auto" />
+                    </DataGrid.Columns>
+                </ui:DataGrid>
+
+
+
+            </StackPanel>
+
+        </TabItem>
+    </TabControl>
 </Page>

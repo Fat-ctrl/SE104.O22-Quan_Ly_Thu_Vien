@@ -1,4 +1,5 @@
 ﻿using QLTV_Nhom13.ViewModels.Windows;
+using System.ComponentModel;
 using System.Windows.Input;
 using Wpf.Ui;
 using Wpf.Ui.Appearance;
@@ -22,6 +23,9 @@ namespace QLTV_Nhom13.Views.Windows
             SystemThemeWatcher.Watch(this);
 
             InitializeComponent();
+
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("vi-VN");
+
             SetPageService(pageService);
 
             navigationService.SetNavigationControl(RootNavigation);
@@ -61,5 +65,6 @@ namespace QLTV_Nhom13.Views.Windows
         {
             throw new NotImplementedException();
         }
+
     }
 }

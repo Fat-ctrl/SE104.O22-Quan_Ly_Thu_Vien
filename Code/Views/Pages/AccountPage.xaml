@@ -17,7 +17,7 @@
 
     <StackPanel>
 
-        <Image Source="pack://application:,,,/Assets/avatar.png" Width="100" Height="100" HorizontalAlignment="Left" Margin="0 0 0 20 " />
+        <Image Source="pack://application:,,,/Assets/avatar.png" Width="100" Height="100" HorizontalAlignment="Left" Margin="0 0 0 20" />
 
         <Grid>
             <Grid.ColumnDefinitions>

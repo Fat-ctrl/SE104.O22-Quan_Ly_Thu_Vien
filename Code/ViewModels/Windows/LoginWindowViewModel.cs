@@ -1,77 +1,81 @@
-﻿/*using System;
+﻿/*using System.ComponentModel;
 using System.Windows.Input;
-using Wpf.Ui.Controls; // Assuming this namespace contains relevant controls
 
 namespace QLTV_Nhom13.ViewModels.Windows
 {
-    class LoginWindowViewModel : ObservableObject
+    public class LoginWindowViewModel : INotifyPropertyChanged
     {
-        // Properties for data binding
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private string _username;
         public string Username
         {
-            get => _username;
+            get { return _username; }
             set
             {
-                _username = value;
-                OnPropertyChanged(nameof(Username));
+                if (_username != value)
+                {
+                    _username = value;
+                    OnPropertyChanged(nameof(Username));
+                }
             }
         }
 
         private string _password;
         public string Password
         {
-            get => _password;
+            get { return _password; }
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-            }
-        }
-
-        // Command for login button
-        private ICommand _loginCommand;
-        public ICommand LoginCommand
-        {
-            get
-            {
-                if (_loginCommand == null)
+                if (_password != value)
                 {
-                    _loginCommand = new RelayCommand(Login, CanLogin);
+                    _password = value;
+                    OnPropertyChanged(nameof(Password));
                 }
-                return _loginCommand;
             }
         }
 
-        // Execute when login button is clicked
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                if (_errorMessage != value)
+                {
+                    _errorMessage = value;
+                    OnPropertyChanged(nameof(ErrorMessage));
+                }
+            }
+        }
+
+        public ICommand LoginCommand { get; }
+
+        public LoginWindowViewModel()
+        {
+            // Initialize commands
+            LoginCommand = new RelayCommand(Login);
+        }
+
         private void Login(object parameter)
         {
-            // Validate username and password
-            if (IsValidLogin(Username, Password))
+            // Here you can implement your login logic
+            // For demonstration purposes, I'm just setting an error message if username or password is empty
+            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
-                // Successful login logic
-                // Navigate to the next view (OverviewScreenView)
-                // You can use a navigation service or change the current view here
+                ErrorMessage = "Username and Password are required.";
             }
             else
             {
-                // Show an error message or handle invalid login
+                // Your login logic goes here
+                // For example, you could authenticate the user against a database or a service
+                // If authentication is successful, navigate to the main application window
             }
         }
 
-        // Check if login is allowed
-        private bool CanLogin(object parameter)
+        private void OnPropertyChanged(string propertyName)
         {
-            // Implement your logic here (e.g., check if fields are not empty)
-            return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
-        }
-
-        // Placeholder method for login validation (replace with your actual logic)
-        private bool IsValidLogin(string username, string password)
-        {
-            // Replace with your authentication logic (e.g., check against a database)
-            // For demonstration purposes, allow any non-empty username and password
-            return !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

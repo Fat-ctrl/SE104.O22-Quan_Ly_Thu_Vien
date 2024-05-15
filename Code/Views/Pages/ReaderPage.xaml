@@ -39,13 +39,18 @@
                     <ui:Button x:Name="addReaderButton" Grid.Column="2" Margin="0 24 8 12" Content="Thêm độc giả" Command="{Binding AddReaderCommand}" Icon="{ui:SymbolIcon Add24}"/>
                 </Grid>
 
-                <ui:DataGrid x:Name="readerGrid" Margin="0" ItemsSource="{Binding Readers, Mode=TwoWay}" AutoGenerateColumns="False">
-                    <DataGridTextColumn Header="Reader ID" Binding="{Binding ReaderId}" Width="100" />
-                    <DataGridTextColumn Header="Reader Name" Binding="{Binding ReaderName}" Width="200" />
-                    <DataGridTextColumn Header="Reader Type" Binding="{Binding ReaderTypeName}" Width="150" />
-                    <DataGridTextColumn Header="# Borrowing Books" Binding="{Binding NumberOfBorrowingBooks}" Width="120" />
-                    <DataGridTextColumn Header="Expiring Date" Binding="{Binding ExpiringDate}" Width="120" />
-                    <DataGridTextColumn Header="Late Due Fee" Binding="{Binding LateDueFee}" Width="100" />
+                <ui:DataGrid x:Name="readerGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding Readers, Mode=TwoWay}" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã độc giả" Binding="{Binding ReaderId}" Width="100" />
+                        <DataGridTextColumn Header="Tên độc giả" Binding="{Binding ReaderName}" Width="200" />
+                        <DataGridTextColumn Header="Loại độc giả" Binding="{Binding ReaderTypeName}" Width="150" />
+                        <DataGridTextColumn Header="Sách đang mượn" Binding="{Binding NumberOfBorrowingBooks}" Width="120" />
+                        <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ExpiringDate}" Width="120" />
+                        <DataGridTextColumn Header="Tổng nợ" Binding="{Binding LateDueFee}" Width="100" />
+                    </DataGrid.Columns>
                 </ui:DataGrid>
             </StackPanel>
         </TabItem>
@@ -69,9 +74,14 @@
                     <ui:Button x:Name="addReaderTypeButton" Grid.Column="1" Margin="0 24 8 12" Content="Thêm loại độc giả" Command="{Binding AddReaderTypeCommand}" HorizontalAlignment="Left" Icon="{ui:SymbolIcon Add24}" />
                 </Grid>
 
-                <ui:DataGrid x:Name="readerTypeGrid" Margin="0" ItemsSource="{Binding ReaderTypes, Mode=TwoWay}" AutoGenerateColumns="False">
-                    <DataGridTextColumn Header="Reader Type ID" Binding="{Binding ReaderTypeId}" Width="100" />
-                    <DataGridTextColumn Header="Reader Type Name" Binding="{Binding ReaderTypeName}" Width="200" />
+                <ui:DataGrid x:Name="readerTypeGrid" 
+                             Margin="0" 
+                             Height="Auto"
+                             ItemsSource="{Binding ReaderTypes, Mode=TwoWay}" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã loại độc giả" Binding="{Binding ReaderTypeId}" Width="Auto" />
+                        <DataGridTextColumn Header="Tên loại độc giả" Binding="{Binding ReaderTypeName}" Width="Auto" />
+                    </DataGrid.Columns>
                 </ui:DataGrid>
             </StackPanel>
         </TabItem>

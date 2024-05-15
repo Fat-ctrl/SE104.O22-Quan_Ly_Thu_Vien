@@ -7,15 +7,14 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-    /// <summary>
-    /// Login page
+/*    /// <summary>
+    /// Interaction logic for ChangeGenreInfoWindow.xaml
     /// </summary>
-/*    public partial class LoginWindow : Window
+    public partial class ChangeGenreInfoWindow : Window
     {
-        public LoginWindow()
+        public ChangeGenreInfoWindow()
         {
             InitializeComponent();
         }
-
     }*/
 }

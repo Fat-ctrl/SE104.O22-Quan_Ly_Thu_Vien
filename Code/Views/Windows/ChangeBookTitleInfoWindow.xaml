@@ -1,0 +1,112 @@
+﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.ChangeBookTitleInfoWindow"
+                Title="ChangeBookTitleInfo"
+                xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
+                 
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                Width="500"
+                Height="850"
+                d:DataContext="{d:DesignInstance local:MainWindow,
+                                                 IsDesignTimeCreatable=True}"
+                d:DesignHeight="850"
+                d:DesignWidth="500"
+                d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+                d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                ExtendsContentIntoTitleBar="True"
+                WindowBackdropType="Mica"
+                WindowCornerPreference="Round"
+                WindowStartupLocation="CenterScreen"
+                mc:Ignorable="d">
+
+
+    <StackPanel>
+        <ui:TitleBar
+            x:Name="TitleBar"
+            Title="{Binding ViewModel.ApplicationTitle}"
+            Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:TextBlock Text="SỬA THÔNG TIN TỰA SÁCH" HorizontalAlignment="Center" Margin="0 12 0 0" FontTypography="Title" />
+        
+        
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Grid.Column="0" Text="Mã tựa sách: " FontFamily="Subtitle" HorizontalAlignment="Center" Margin="0 12 0 12"/>
+            <ui:TextBlock Grid.Column="1" Text="{Binding BookTitleID}" FontFamily="Subtitle" HorizontalAlignment="Center" Margin="0 12 0 12"/>
+        </Grid>    
+
+        <ui:TextBlock Text="Tên tựa sách" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="BookTitleName" Margin="24 0 24 12" Text="{Binding BookTitleName}"/>
+
+        <ui:TextBlock Text="Thể loại" Margin="24 0 0 12" FontTypography="BodyStrong"/>
+        <ui:TextBox x:Name="Genre" Margin="24 0 24 12" Text="{Binding Genre}"/>
+
+        <ui:TextBlock Text="Danh sách tác giả" 
+                      Margin="24 0 0 12" 
+                      FontTypography="BodyStrong"/>
+        <DataGrid x:Name="AuthorsDataGrid" 
+                  Margin="24 0 24 12"
+                  Height="280">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tác giả" Binding="{Binding AuthorList}"/>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ui:Button Icon="{ui:SymbolIcon Dismiss24}"
+                            Command="Delete"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0"
+                  IsEditable="true"
+                  SelectedIndex="0"
+                  Margin="24 6 12 12"
+                  MinWidth="300">
+                <ComboBoxItem 
+                    x:Name="AuthorComboBox"
+                    Content="Chọn tác giả"/>
+                <DataTemplate>
+                    <ComboBoxItem Content="{Binding Authors}"/>
+                </DataTemplate>
+            </ComboBox>
+
+            <ui:Button x:Name="AddAuthorButton"
+                       Grid.Column="1" 
+                       Content="Thêm tác giả" 
+                       Margin="12 6 24 12" 
+                       HorizontalAlignment="Right"
+                       Icon="{ui:SymbolIcon Add24}"/>
+        </Grid>
+
+        <TextBlock Text="{Binding ErrorMessage}" 
+                       Foreground="Red" 
+                       Margin="24 12 24 12"
+                       HorizontalAlignment="Center"/>
+
+        <ui:Button x:Name="SaveChangeButton"
+                   Content="Lưu" 
+                   HorizontalAlignment="Center" 
+                   Margin="0 24 0 12" 
+                   Appearance="Primary" 
+                   Width="130" Command=""/>
+    </StackPanel>
+</ui:FluentWindow>

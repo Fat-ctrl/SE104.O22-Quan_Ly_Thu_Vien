@@ -11,6 +11,8 @@
     Height="350"
     d:DesignHeight="350"
     d:DesignWidth="400"
+    d:DataContext="{d:DesignInstance local:MainWindow,
+                                    IsDesignTimeCreatable=True}"
     ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
@@ -19,7 +21,7 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Grid>
+    <StackPanel>
         <ui:TitleBar
             x:Name="TitleBar"
             Grid.Row="0">
@@ -28,12 +30,23 @@
             </ui:TitleBar.Icon>
         </ui:TitleBar>
 
-        <StackPanel Margin="16,50,16,20">
-            <ui:TextBlock Margin="0 0 0 8" FontTypography="Title" Text="Đăng nhập"/>
-            <ui:TextBox x:Name="UsernameTextBox" PlaceholderText="Nhập tên người dùng" />
-            <ui:PasswordBox x:Name="PasswordTextBox" Margin="0,10,0,0" PlaceholderText="Nhập mật khẩu"/>
-            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Visibility="{Binding IsErrorVisible, Converter={StaticResource BoolToVisibilityConverter}}" Margin="0 8 0 8"/>
-            <ui:Button x:Name="LoginButton" Content="Đăng nhập" Margin="0,0,0,0" />
+        <StackPanel Margin="24 0 24 0">
+            <ui:TextBlock Margin="0 0 0 24" 
+                          FontTypography="Title" 
+                          Text="Đăng nhập"/>
+            <ui:TextBox x:Name="UsernameTextBox" 
+                        PlaceholderText="Nhập tên người dùng" />
+            <ui:PasswordBox x:Name="PasswordTextBox" 
+                            Margin="0,12,0,0"
+                            PlaceholderText="Nhập mật khẩu"/>
+            <TextBlock Text="{Binding ErrorMessage}" 
+                       Foreground="Red" 
+                       Margin="24 12 24 12"
+                       HorizontalAlignment="Center"/>
+            <ui:Button x:Name="LoginButton" 
+                       Content="Đăng nhập" 
+                       Margin="0,12,0,0" 
+                       Appearance="Primary"/>
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </ui:FluentWindow>

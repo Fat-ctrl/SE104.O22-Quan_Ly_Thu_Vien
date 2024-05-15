@@ -1,0 +1,83 @@
+﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.BookTitleInfoWindow"
+      xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
+      Title="BookTitleInfoWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Width="1100"
+      Height="750"
+      d:DataContext="{d:DesignInstance local:MainWindow,
+                                     IsDesignTimeCreatable=True}"
+      d:DesignHeight="750"
+      d:DesignWidth="1000"
+      d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+      d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      ExtendsContentIntoTitleBar="True"
+      WindowBackdropType="Mica"
+      WindowCornerPreference="Round"
+      WindowStartupLocation="CenterScreen"
+      mc:Ignorable="d">
+
+    <StackPanel>
+        <ui:TitleBar
+        x:Name="TitleBar"
+        Title="{Binding ViewModel.ApplicationTitle}"
+        Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:TextBlock Text="THÔNG TIN TỰA SÁCH" HorizontalAlignment="Center" Margin="0 12 0 24" FontTypography="Title" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <ui:TextBlock Text="Mã tựa sách: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+                <ui:TextBlock Text="Tên tựa sách: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+                <ui:TextBlock Text="Thể loại: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+                <ui:TextBlock Text="Danh sách tác giả: " FontTypography="BodyStrong" Margin="24 6 0 6"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <ui:TextBlock Text="{Binding BookTitleID}" FontTypography="Body" Margin="0 6 24 6"/>
+                <ui:TextBlock Text="{Binding BookTitle}" FontTypography="Body" Margin="0 6 24 6"/>
+                <ui:TextBlock Text="{Binding BookGenre}" FontTypography="Body" Margin="0 6 24 6"/>
+                <ui:TextBlock Text="{Binding Authors}" FontTypography="Body" Margin="0 6 24 6"/>
+            </StackPanel>
+
+        </Grid>
+
+        <ui:Button x:Name="ChangeInfoButton" Content="Sửa thông tin" HorizontalAlignment="Right" Margin="0 12 24 0" Appearance="Primary" Command="{Binding ChangeInfo}"/>
+
+        <ui:TextBlock Text="DANH SÁCH CÁC SÁCH" HorizontalAlignment="Center" FontTypography="Title" Margin="0 24 0 24"/>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ui:DataGrid ItemsSource="{Binding BookTitleDataGrid}" 
+                     Height="Auto"
+                      Grid.Column="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sách" Binding="{Binding BookID}" Width="Auto"/>
+                    <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="Auto"/>
+                    <DataGridTextColumn Header="Còn lại" Binding="{Binding NumberOfBookLeft}" Width="Auto"/>
+                    <DataGridTextColumn Header="Đơn giá" Binding="{Binding Pricing}" Width="Auto"/>
+                    <DataGridTextColumn Header="Năm xuất bản" Binding="{Binding PublishYear}" Width="Auto"/>
+                    <DataGridTextColumn Header="Nhà xuất bản" Binding="{Binding Publisher}" Width="Auto"/>
+                </DataGrid.Columns>
+            </ui:DataGrid>
+        </Grid>
+
+    </StackPanel>
+
+</ui:FluentWindow>

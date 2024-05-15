@@ -5,5 +5,6 @@ namespace QLTV_Nhom13.ViewModels.Windows
 {
     class ChangePasswordViewModel
     {
+
     }
 }

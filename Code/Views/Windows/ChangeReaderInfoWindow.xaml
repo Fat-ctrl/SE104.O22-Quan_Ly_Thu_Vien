@@ -1,5 +1,5 @@
-﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.ChangeReaderInfo"
-                Title="ChangeReaderInfo"
+﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.ChangeReaderInfoWindow"
+                Title="ChangeReaderInfoWindow"
                 xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
                  
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -22,6 +22,20 @@
                 WindowStartupLocation="CenterScreen"
                 mc:Ignorable="d">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ui:TextBox x:Name="PART_TextBox"
+                            Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', 
+                            RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                            PlaceholderText="Chọn ngày/tháng/năm"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <StackPanel>
         <ui:TitleBar
@@ -33,10 +47,20 @@
             </ui:TitleBar.Icon>
         </ui:TitleBar>
 
-        <ui:TextBlock Text="SỬA THẺ ĐỘC GIẢ" HorizontalAlignment="Center" Margin="0 12 0 24" FontTypography="Title" />
+        <ui:TextBlock Text="SỬA THẺ ĐỘC GIẢ" HorizontalAlignment="Center"  FontTypography="Title" />
+
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+         
+            <ui:TextBlock Grid.Column="0" Text="Mã độc giả: " FontFamily="Subtitle" HorizontalAlignment="Center" Margin="0 12 0 12"/>
+            <ui:TextBlock Grid.Column="1" Text="{Binding User}" FontFamily="Subtitle" HorizontalAlignment="Center" Margin="0 12 0 12"/>
+        </Grid>
 
         <ui:TextBlock Text="Họ tên" Margin="24 0 0 12" FontTypography="BodyStrong"/>
-        <ui:TextBox x:Name="Name" Margin="24 0 24 12" Text="{Binding Name}"/>
+        <ui:TextBox x:Name="ReaderName" Margin="24 0 24 12" Text="{Binding ReaderName}"/>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -46,25 +70,21 @@
 
             <StackPanel Grid.Column="0">
                 <ui:TextBlock Text="Ngày sinh" Margin="24 12 0 12" FontTypography="BodyStrong"/>
-                <ui:CalendarDatePicker
+                <DatePicker
                     x:Name="DOB"
-                    Content="Chọn ngày sinh"
-                    Date="{x:Static sys:DateTime.Today}"
                     IsTodayHighlighted="True"
-                    Margin="24 0 0 12"/>
+                    Margin="24 0 24 12"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <ui:TextBlock Text="Loại độc giả" Margin="0 12 0 12" FontTypography="BodyStrong"/>
-                <ui:DropDownButton Content="{Binding ReaderType}" x:Name="ReaderType">
-                    <ui:DropDownButton.Flyout>
-                        <ContextMenu>
-                            <MenuItem Header="Giáo viên" Command="{Binding }" />
-                            <MenuItem Header="Sinh viên" Command="{Binding }" />
-                            <MenuItem Header="Khác" Command="{Binding }" />
-                        </ContextMenu>
-                    </ui:DropDownButton.Flyout>
-                </ui:DropDownButton>
+                <ComboBox SelectedItem="{Binding ReaderType}" 
+                          x:Name="ReaderType"
+                          Margin="0 0 24 12">
+                    <ComboBoxItem Content="Giáo viên" />
+                    <ComboBoxItem Content="Sinh viên" />
+                    <ComboBoxItem Content="Khác" />
+                </ComboBox>
             </StackPanel>
         </Grid>
 
@@ -90,6 +110,11 @@
                 <ui:TextBlock x:Name="ExpirationDate" Text="{Binding ExpirationDate}" FontTypography="Body"/>
             </StackPanel>
         </Grid>
-        <ui:Button Content="Lưu" HorizontalAlignment="Center" Margin="0 24 0 12" Appearance="Primary" Width="130"/>
+        <ui:Button x:Name="SaveChangeButton" 
+                   Content="Lưu" 
+                   HorizontalAlignment="Center" 
+                   Margin="0 24 0 12" 
+                   Appearance="Primary" 
+                   Width="130"/>
     </StackPanel>
 </ui:FluentWindow>

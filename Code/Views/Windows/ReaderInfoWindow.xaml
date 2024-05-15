@@ -8,10 +8,10 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="ReaderInfoWindow"
     Width="1100"
-    Height="800"
+    Height="850"
     d:DataContext="{d:DesignInstance local:MainWindow,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="800"
+    d:DesignHeight="850"
     d:DesignWidth="1100"
     d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
     d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
@@ -64,20 +64,30 @@
             
         </Grid>
 
-        <ui:Button Content="Sửa thông tin" HorizontalAlignment="Right" Margin="0 12 24 0"/>
+        <ui:Button Content="Sửa thông tin" HorizontalAlignment="Right" Margin="0 12 24 0" Appearance="Primary" Command="{Binding ChangeInfo}"/>
 
         <ui:TextBlock Text="CÁC SÁCH ĐÃ MƯỢN" HorizontalAlignment="Center" FontTypography="Title" Margin="0 24 0 24"/>
-        
-        <ui:DataGrid ItemsSource="{Binding}" AutoGenerateColumns="False" >
-            <DataGridTextColumn Header="Số phiếu mượn" Binding="{Binding BorrowID}"/>
-            <DataGridTextColumn Header="Mã cuốn sách" Binding="{Binding BookID}" />
-            <DataGridTextColumn Header="Tên sách" Binding="{Binding BookName}" />
-            <DataGridTextColumn Header="Ngày mượn" Binding="{Binding BorrowDate}" />
-            <DataGridTextColumn Header="Hạn trả" Binding="{Binding DueDuration}" />
-            <DataGridTextColumn Header="Ngày trả" Binding="{Binding DueDate}" />
-            <DataGridTextColumn Header="Tiền phạt" Binding="{Binding DueMoney}" />
-        </ui:DataGrid>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ui:DataGrid ItemsSource="{Binding BookBorrowerDataGrid}" 
+                         x:Name="BookBorrowDataGrid"
+                         Grid.Column="0"
+                         Height="Auto"
+                         Margin="24 0 24 24">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Số phiếu mượn" Binding="{Binding BorrowID}" Width="Auto"/>
+                    <DataGridTextColumn Header="Mã cuốn sách" Binding="{Binding BookID}" Width="Auto"/>
+                    <DataGridTextColumn Header="Tên sách" Binding="{Binding BookName}" Width="Auto"/>
+                    <DataGridTextColumn Header="Ngày mượn" Binding="{Binding BorrowDate}" Width="Auto"/>
+                    <DataGridTextColumn Header="Hạn trả" Binding="{Binding DueDuration}" Width="Auto"/>
+                    <DataGridTextColumn Header="Ngày trả" Binding="{Binding DueDate}" Width="Auto"/>
+                    <DataGridTextColumn Header="Tiền phạt" Binding="{Binding DueMoney}" Width="Auto"/>
+                </DataGrid.Columns>
+            </ui:DataGrid>
+        </Grid>
 
     </StackPanel>
 </ui:FluentWindow>

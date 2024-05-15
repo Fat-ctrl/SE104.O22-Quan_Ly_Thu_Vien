@@ -8,14 +8,18 @@ using Wpf.Ui.Controls;
 namespace QLTV_Nhom13.Views.Windows
 {
     /// <summary>
-    /// Login page
+    /// Interaction logic for ChangeAuthorInfo.xaml
     /// </summary>
-/*    public partial class LoginWindow : Window
+    public partial class ChangeAuthorInfo : Window
     {
-        public LoginWindow()
+        public ChangeAuthorInfo()
         {
             InitializeComponent();
         }
 
-    }*/
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

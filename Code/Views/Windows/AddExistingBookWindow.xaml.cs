@@ -4,18 +4,16 @@ using System.Windows.Input;
 using Wpf.Ui;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
-
 namespace QLTV_Nhom13.Views.Windows
 {
-    /// <summary>
-    /// Login page
+/*    /// <summary>
+    /// Interaction logic for AddExistingBookWindow.xaml
     /// </summary>
-/*    public partial class LoginWindow : Window
+    public partial class AddExistingBookWindow : Window
     {
-        public LoginWindow()
+        public AddExistingBookWindow()
         {
             InitializeComponent();
         }
-
     }*/
 }
