@@ -101,12 +101,12 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
-                <ui:TextBlock Text="Ngày lập thẻ*" Margin="24 12 0 12" FontTypography="BodyStrong"/>
+                <ui:TextBlock Text="Ngày lập thẻ: " Margin="24 12 0 12" FontTypography="BodyStrong"/>
                 <ui:TextBlock x:Name="LibraryCardCreationDate"  Text="{Binding LibraryCardIssueDate}" FontTypography="Body"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-                <ui:TextBlock Text="Ngày hết hạn" Margin="0 12 0 12" FontTypography="BodyStrong"/>
+                <ui:TextBlock Text="Ngày hết hạn: " Margin="0 12 0 12" FontTypography="BodyStrong"/>
                 <ui:TextBlock x:Name="ExpirationDate" Text="{Binding ExpirationDate}" FontTypography="Body"/>
             </StackPanel>
         </Grid>

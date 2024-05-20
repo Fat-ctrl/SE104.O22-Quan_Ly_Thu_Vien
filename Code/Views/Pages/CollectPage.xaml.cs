@@ -14,7 +14,8 @@ namespace QLTV_Nhom13.Views.Pages
         {
             ViewModel = viewModel;
 
-            /*InitializeComponent();*/
+            DataContext = this;
+            InitializeComponent();
         }
     }
 }

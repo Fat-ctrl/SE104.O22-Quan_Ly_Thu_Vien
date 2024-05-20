@@ -99,8 +99,7 @@
                             Margin="24 0 24 12"
                             Content="{x:Static sys:DateTime.Today}"
                             Date="{x:Static sys:DateTime.Today}"
-                            IsTodayHighlighted="True"
-                            Language="vi-VN"/>
+                            IsTodayHighlighted="True"/>
 
             </StackPanel>
 

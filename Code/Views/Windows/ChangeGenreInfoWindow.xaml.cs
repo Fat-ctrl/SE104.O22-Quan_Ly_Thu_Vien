@@ -7,14 +7,20 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for ChangeGenreInfoWindow.xaml
     /// </summary>
-    public partial class ChangeGenreInfoWindow : Window
+    public partial class ChangeGenreInfoWindow
     {
+        private readonly ChangeGenreInfoViewModel _viewModel;
+
         public ChangeGenreInfoWindow()
         {
             InitializeComponent();
+
+            _viewModel = new ChangeGenreInfoViewModel();
+
+            DataContext = _viewModel;
         }
-    }*/
+    }
 }

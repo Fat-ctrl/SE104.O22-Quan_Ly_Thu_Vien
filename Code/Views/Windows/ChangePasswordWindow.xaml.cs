@@ -10,11 +10,17 @@ namespace QLTV_Nhom13.Views.Windows
     /// <summary>
     /// Interaction logic for ChangePasswordWindow.xaml
     /// </summary>
-    public partial class ChangePasswordWindow : INotifyPropertyChanged
+    public partial class ChangePasswordWindow 
     {
+        private readonly ChangePasswordViewModel _viewModel;
+
         public ChangePasswordWindow()
         {
             InitializeComponent();
+
+            _viewModel = new ChangePasswordViewModel();
+
+            DataContext = _viewModel;
         }
     }
 }

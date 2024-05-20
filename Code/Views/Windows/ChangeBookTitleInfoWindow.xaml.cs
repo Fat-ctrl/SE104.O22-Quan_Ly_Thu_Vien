@@ -1,20 +1,32 @@
 ﻿using QLTV_Nhom13.ViewModels.Windows;
-using System.ComponentModel;
-using System.Windows.Input;
+using System.Windows;
 using Wpf.Ui;
-using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for ChangeReaderInfo.xaml
     /// </summary>
-    public partial class ChangeBookTitleInfo : INotifyPropertyChanged
+    public partial class ChangeBookTitleInfo
     {
-        public ChangeBookTitleInfo()
+        private readonly ChangeBookTitleInfoViewModel _viewModel;
+
+        public ChangeBookTitleInfoViewModel DataContext { get; }
+
+        public ChangeBookTitleInfo() 
         {
             InitializeComponent();
+
+            _viewModel = new ChangeBookTitleInfoViewModel();
+
+            DataContext = _viewModel;
         }
-    }*/
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
+    }
+        
 }

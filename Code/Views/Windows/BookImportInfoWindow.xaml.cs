@@ -7,14 +7,20 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for BookImportInfoWindow.xaml
     /// </summary>
-    public partial class BookImportInfoWindow : Window
+    public partial class BookImportInfoWindow
     {
+        private readonly BookImportInfoViewModel viewModel;
+
         public BookImportInfoWindow()
         {
             InitializeComponent();
+
+            viewModel = new BookImportInfoViewModel();
+
+            DataContext = viewModel;    
         }
-    }*/
+    }
 }

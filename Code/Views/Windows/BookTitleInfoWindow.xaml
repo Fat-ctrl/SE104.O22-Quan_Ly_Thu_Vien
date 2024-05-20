@@ -65,8 +65,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <ui:DataGrid ItemsSource="{Binding BookTitleDataGrid}" 
-                     Height="Auto"
-                      Grid.Column="0">
+                         Height="Auto"
+                         Grid.Column="0"
+                         Margin="24 0 24 24">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã sách" Binding="{Binding BookID}" Width="Auto"/>
                     <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="Auto"/>

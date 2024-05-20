@@ -10,12 +10,18 @@ namespace QLTV_Nhom13.Views.Windows
     /// <summary>
     /// Login page
     /// </summary>
-/*    public partial class LoginWindow : Window
+    public partial class LoginWindow 
     {
+        private readonly LoginWindowViewModel viewModel;
+
         public LoginWindow()
         {
             InitializeComponent();
+
+            viewModel = new LoginWindowViewModel();
+
+            DataContext = viewModel;
         }
 
-    }*/
+    }
 }

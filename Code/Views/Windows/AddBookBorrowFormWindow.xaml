@@ -1,0 +1,264 @@
+﻿<ui:FluentWindow x:Class="QLTV_Nhom13.Views.Windows.AddBookBorrowFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:QLTV_Nhom13.Views.Windows"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="AddBookBorrowFormWindow" 
+        Height="1000" 
+        Width="600"
+        d:DataContext="{d:DesignInstance local:MainWindow,
+                                 IsDesignTimeCreatable=True}"
+        d:DesignHeight="1000"
+        d:DesignWidth="600"
+        d:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        d:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ui:TextBox x:Name="PART_TextBox"
+                            Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', 
+                            RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                            PlaceholderText="Chọn ngày/tháng/năm"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel>
+        <ui:TitleBar
+                x:Name="TitleBar"
+                Title="{Binding ViewModel.ApplicationTitle}"
+                Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui-icon-256.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <ui:TextBlock Text="PHIẾU MƯỢN TRẢ" 
+          HorizontalAlignment="Center" 
+          Margin="0 12 0 6" FontTypography="Title" />
+
+        <ui:TextBlock Text="Thông tin cuốn sách" 
+              HorizontalAlignment="Left" 
+              Margin="24 18 0 24" 
+              FontTypography="Subtitle" />
+
+
+        <StackPanel Grid.Column="0" >
+            <ui:TextBlock Text="Mã cuốn sách" 
+                    Margin="24 0 0 12" 
+                    FontTypography="BodyStrong"/>
+            <ComboBox SelectedIndex="0"
+                    Margin="24 0 24 12">
+                <ComboBox.ItemsSource>
+                    <CompositeCollection>
+                        <ListBoxItem>Chọn mã cuốn sách</ListBoxItem>
+                        <!--<CollectionContainer Collection="{Binding Source={StaticResource YOURDATASOURCE}}" />-->
+                    </CompositeCollection>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Text="Tên cuốn sách: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="BookTitleTextBlock" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Text="Thể loại: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="BookGenreTextBlock" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <ui:TextBlock Text="Thông tin độc giả" 
+            HorizontalAlignment="Left" 
+            Margin="24 12 0 24" 
+            FontTypography="Subtitle" />
+
+        <StackPanel Grid.Column="0" >
+            <ui:TextBlock Text="Độc giả" 
+                    Margin="24 0 0 12" 
+                    FontTypography="BodyStrong"/>
+            <ComboBox SelectedIndex="0"
+                    Margin="24 0 24 12">
+                <ComboBox.ItemsSource>
+                    <CompositeCollection>
+                        <ListBoxItem>Chọn độc giả</ListBoxItem>
+                        <!--<CollectionContainer Collection="{Binding Source={StaticResource YOURDATASOURCE}}" />-->
+                    </CompositeCollection>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Text="Tên cuốn sách: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="BookTileTextBlock" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Text="Thể loại: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="BookGeneTextBlock" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <ui:TextBlock Text="Chi tiết mượn trả" 
+            HorizontalAlignment="Left" 
+            Margin="24 12 0 24" 
+            FontTypography="Subtitle" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBlock Text="Ngày mượn " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:CalendarDatePicker x:Name="BorrowDateDatePicker"
+                                   Grid.Column="1"
+                                   Date="{x:Static sys:DateTime.Today}" 
+                                   Content="{x:Static sys:DateTime.Today}"
+                                   IsTodayHighlighted="True"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <ui:TextBlock Text="Hạn trả: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="DueDate" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <ui:TextBlock Text="Số ngày trả trễ: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="OverdueDateCount" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <ui:TextBlock Text="Đơn giá phạt: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="OverdueRate" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <ui:TextBlock Text="Tiền phạt: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="OverdueTotalAmount" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <ui:TextBlock Text="Tổng nợ mới: " 
+                          Margin="24 6 0 12" 
+                          FontTypography="BodyStrong"
+                          Grid.Column="0"/>
+            <ui:TextBlock x:Name="BookGeneTexfBlock" 
+                            Margin="24 6 24 12"
+                            Grid.Column="1"/>
+        </Grid>
+
+
+        <TextBlock Text="{Binding ErrorMessage}" 
+                    Foreground="Red" 
+                    Margin="24 12 24 12"
+                    HorizontalAlignment="Center"/>
+
+        <ui:Button x:Name="SaveButton" 
+                    Content="Lưu" 
+                    HorizontalAlignment="Center" 
+                    Margin="0 24 0 12" 
+                    Appearance="Primary" 
+                    Width="130"/>   
+            
+
+    </StackPanel>
+</ui:FluentWindow>

@@ -7,14 +7,20 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for AddReaderWindow.xaml
     /// </summary>
-    public partial class AddReaderWindow : Window
+    public partial class AddReaderWindow
     {
+        private readonly AddReaderViewModel viewModel;
+
         public AddReaderWindow()
         {
             InitializeComponent();
+
+            viewModel = new AddReaderViewModel();
+
+            DataContext = viewModel;
         }
-    }*/
+    }
 }

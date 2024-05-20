@@ -75,9 +75,9 @@
                         <ui:AutoSuggestBox x:Name="BookTitleAutoSuggestBox"
                                            PlaceholderText="Mã, tên, tác giả" 
                                            Margin="0 0 0 8"/>
-                        <ComboBox
-                            MinWidth="300"
-                            SelectedIndex="0">
+                        <ComboBox x:Name="BookTitleFilterComboBox"
+                                    MinWidth="300"
+                                    SelectedIndex="0">
                             <ComboBoxItem Content="Lọc thể loại" />
                             <ComboBoxItem Content="Green" />
                             <ComboBoxItem Content="Red" />
@@ -102,7 +102,7 @@
                 <ui:Button x:Name="AddBookTitleButton" 
                            Margin="0 12 0 12" 
                            Content="Thêm tựa sách" 
-                           Command="{Binding AddBookTitle}" 
+                           Command="{Binding AddBookTitleButton}" 
                            HorizontalAlignment="Right" 
                            Icon="{ui:SymbolIcon Add24}"/>
 
@@ -142,14 +142,14 @@
                                Grid.Column="4" 
                                Margin="0 24 8 12" 
                                Content="Ẩn sách" 
-                               Command="{Binding ShowBookTitle}" 
+                               Command="{Binding HideBookTitle}" 
                                Icon="{ui:SymbolIcon EyeOff24}"/>
 
                     <ui:Button x:Name="RefreshBookButton" 
                                Grid.Column="5" 
                                Margin="0 24 8 12" 
                                Content="Làm mới" 
-                               Command="{Binding RefreshCommand}" 
+                               Command="{Binding BookRefreshCommand}" 
                                HorizontalAlignment="Right" 
                                Icon="{ui:SymbolIcon ArrowSync24}"/>
 
@@ -157,9 +157,9 @@
                         <ui:AutoSuggestBox x:Name="BookIDAutoSuggestBox"
                                            PlaceholderText="Mã sách" 
                                            Margin="0 0 0 8"/>
-                        <ComboBox
-                            MinWidth="300"
-                            SelectedIndex="0">
+                        <ComboBox x:Name="BookFilterComboBox"
+                                    MinWidth="300"
+                                    SelectedIndex="0">
                             <ComboBoxItem Content="Lọc tình trạng" />
                             <ComboBoxItem Content="Green" />
                             <ComboBoxItem Content="Red" />
@@ -171,9 +171,7 @@
                 <ui:DataGrid x:Name="BookDataGrid" 
                              Margin="0" 
                              Height="Auto"
-                             ItemsSource="{Binding BookDataGrid, Mode=TwoWay}"
-                             VerticalAlignment="Stretch"
-                             HorizontalAlignment="Stretch">
+                             ItemsSource="{Binding BookDataGrid, Mode=TwoWay}">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Header="Mã sách" Binding="{Binding BookId}" Width="Auto" />
                         <DataGridTextColumn Header="Mã tựa sách" Binding="{Binding BookTitleID}" Width="Auto" />
@@ -195,14 +193,14 @@
                                Grid.Column="0"
                                Margin="0 12 0 12" 
                                Content="Nhập sách mới" 
-                               Command="{Binding HideBookTitle}" 
+                               Command="{Binding AddNewBookButton}" 
                                Icon="{ui:SymbolIcon AddCircle24}"/>
 
                     <ui:Button x:Name="AddExistingBookButton" 
                                Grid.Column="1" 
                                Margin="8 12 0 12" 
                                Content="Nhập sách đã có" 
-                               Command="{Binding ShowBookTitle}"
+                               Command="{Binding AddExistingBookButton}"
                                Icon="{ui:SymbolIcon CollectionsAdd24}"/>
                 </Grid>
 
@@ -225,34 +223,31 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <ui:Button x:Name="ShowBookStockButton" 
-                               Grid.Column="3" 
+                               Grid.Column="0" 
                                Margin="0 24 8 12" 
                                Content="Hiện cuốn sách" 
                                Command="{Binding ShowBookStock}" 
                                Icon="{ui:SymbolIcon Eye24}"/>
 
                     <ui:Button x:Name="HideBookStockButton" 
-                               Grid.Column="4" 
+                               Grid.Column="1" 
                                Margin="0 24 8 12" 
                                Content="Ẩn cuốn sách" 
-                               Command="{Binding ShowBookStock}" 
+                               Command="{Binding HideBookStock}" 
                                Icon="{ui:SymbolIcon EyeOff24}"/>
 
-                    <StackPanel Grid.Column="5" HorizontalAlignment="Right" Margin="0 12 0 0">
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0 12 0 0">
                         <ui:AutoSuggestBox x:Name="BookStockAutoSuggestBox"
                                            PlaceholderText="Mã, tên" 
                                            Margin="0 0 0 8"/>
-                        <ComboBox
-                            MinWidth="300"
-                            SelectedIndex="0">
+                        <ComboBox x:Name="BookStockFilterComboBox"
+                                    MinWidth="300"
+                                    SelectedIndex="0">
                             <ComboBoxItem Content="Lọc tình trạng" />
                             <ComboBoxItem Content="Green" />
                             <ComboBoxItem Content="Red" />
@@ -260,15 +255,6 @@
                         </ComboBox>
                     </StackPanel>
 
-                    <!--<StackPanel Grid.Column="6" 
-                                Margin="8 0 0 0">
-                        <ui:Button Content="Tìm kiếm"
-                                   Margin="0 14 0 13" 
-                                   Icon="{ui:SymbolIcon Search24}"
-                                   Width="132"/>
-                        <ui:Button Content="Lọc tình trạng"
-                                   Icon="{ui:SymbolIcon Filter24}"/>
-                    </StackPanel>-->
                 </Grid>
 
                 <ui:DataGrid x:Name="BookStockDataGrid" 
@@ -315,13 +301,6 @@
                                 Grid.Column="0"
                                 Margin="0 24 8 12"/>
 
-                    <ui:Button x:Name="AddAuthorButton" 
-                               Grid.Column="1" 
-                               Margin="0 24 8 12" 
-                               Content="Thêm tác giả" 
-                               Command="{Binding AddAuthorButton}" 
-                               Icon="{ui:SymbolIcon Add24}"/>
-
                     <ui:Button x:Name="RefreshAuthorButton" 
                                Grid.Column="2" 
                                Margin="0 24 8 12" 
@@ -337,12 +316,20 @@
                              Height="Auto"
                              ItemsSource="{Binding AuthorDataGrid, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="Mã tác giả" Binding="{Binding AuthorId}" Width="Auto" />
-                        <DataGridTextColumn Header="Tên tác giả" Binding="{Binding AuthorName}" Width="Auto" />
+                        <DataGridCheckBoxColumn Header="Mã tác giả" Binding="{Binding AuthorId}" Width="*" />
+                        <DataGridTextColumn Header="Tên tác giả" Binding="{Binding AuthorName}" Width="2*" />
                     </DataGrid.Columns>
                 </ui:DataGrid>
 
-
+                <ui:Button x:Name="AddAuthorButton" 
+                               Grid.Column="1" 
+                               Margin="0 12 0 12" 
+                               Content="Thêm tác giả" 
+                               Command="{Binding AddAuthorButton}" 
+                               Icon="{ui:SymbolIcon Add24}"
+                           HorizontalAlignment="Right"/>
+                
+                
 
             </StackPanel>
 
@@ -373,13 +360,6 @@
                                 Grid.Column="0"
                                 Margin="0 24 8 12"/>
 
-                    <ui:Button x:Name="AddGenreButton" 
-                               Grid.Column="1" 
-                               Margin="0 24 8 12" 
-                               Content="Thêm thể loại" 
-                               Command="{Binding GenreAuthorButton}" 
-                               Icon="{ui:SymbolIcon Add24}"/>
-
                     <ui:Button x:Name="RefreshGenreButton" 
                                Grid.Column="2" 
                                Margin="0 24 8 12" 
@@ -400,6 +380,16 @@
                         <DataGridTextColumn Header="Số lượng" Binding="{Binding GenreQuantity}" Width="Auto" />
                     </DataGrid.Columns>
                 </ui:DataGrid>
+
+
+                <ui:Button x:Name="AddGenreButton" 
+                               Grid.Column="1" 
+                               Margin="0 12 0 12" 
+                               Content="Thêm thể loại" 
+                               Command="{Binding AddGenreButton}" 
+                               Icon="{ui:SymbolIcon Add24}"
+                                HorizontalAlignment="Right"/>
+
             </StackPanel>
 
         </TabItem>

@@ -7,14 +7,20 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for ChangeReaderInfo.xaml
     /// </summary>
-    public partial class ChangeReaderInfoWindow : Window
+    public partial class ChangeReaderInfoWindow
     {
+        private readonly ChangeAuthorInfoViewModel viewModel;
+
         public ChangeReaderInfoWindow()
         {
             InitializeComponent();
+
+            viewModel = new ChangeAuthorInfoViewModel();
+
+            DataContext = viewModel;
         }
-    }*/
+    }
 }

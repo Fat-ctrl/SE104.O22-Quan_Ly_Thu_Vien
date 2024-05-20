@@ -13,6 +13,8 @@ namespace QLTV_Nhom13.Views.Pages
         public ReaderPage(ReaderViewModel viewModel)
         {
             ViewModel = viewModel;
+
+            DataContext = this;
             InitializeComponent();
         }
     }

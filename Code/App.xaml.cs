@@ -44,10 +44,7 @@ namespace QLTV_Nhom13
 
                 // Main window with navigation
                 services.AddSingleton<INavigationWindow, MainWindow>();
-                services.AddSingleton<MainWindowViewModel>();
-
-                services.AddSingleton<SettingsPage>();
-                services.AddSingleton<SettingsViewModel>();
+                services.AddSingleton<MainWindowViewModel>();;
 
                 services.AddSingleton<AccountPage>();
                 services.AddSingleton<AccountViewModel>();
@@ -55,8 +52,26 @@ namespace QLTV_Nhom13
                 services.AddSingleton<BookPage>();
                 services.AddSingleton<BookViewModel>();
 
+                services.AddSingleton<BorrowPage>();
+                services.AddSingleton<BorrowViewModel>();
+
+                services.AddSingleton<CollectPage>();
+                services.AddSingleton<CollectViewModel>();
+
+                services.AddSingleton<ManageUserPage>();
+                services.AddSingleton<ManageUserViewModel>();
+
+                services.AddSingleton<PropertyPage>();
+                services.AddSingleton<PropertyViewModel>();
+
                 services.AddSingleton<ReaderPage>();
                 services.AddSingleton<ReaderViewModel>();
+
+                services.AddSingleton<ReportPage>();
+                services.AddSingleton<ReportViewModel>();
+
+                services.AddSingleton<SettingsPage>();
+                services.AddSingleton<SettingsViewModel>();
 
             }).Build();
 
@@ -65,7 +80,7 @@ namespace QLTV_Nhom13
         /// </summary>
         /// <typeparam name="T">Type of the service to get.</typeparam>
         /// <returns>Instance of the service or <see langword="null"/>.</returns>
-        public static T GetService<T>()
+        public static T? GetService<T>()
             where T : class
         {
             return _host.Services.GetService(typeof(T)) as T;

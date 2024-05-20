@@ -10,12 +10,18 @@ namespace QLTV_Nhom13.Views.Windows
     /// <summary>
     /// Interaction logic for AddNewBookWindow.xaml
     /// </summary>
-    public partial class AddNewBookWindow : FluentWindow
+    public partial class AddNewBookWindow 
     {
+        private readonly AddNewBookViewModel viewModel;
+
         public AddNewBookWindow()
         {
-/*            InitializeComponent();
-            DataContext = new AddNewBookViewModel(); // Assuming you have a ViewModel for this window*/
+            InitializeComponent();
+
+            viewModel = new AddNewBookViewModel();
+
+            DataContext = viewModel;
+            
         }
     }
 }

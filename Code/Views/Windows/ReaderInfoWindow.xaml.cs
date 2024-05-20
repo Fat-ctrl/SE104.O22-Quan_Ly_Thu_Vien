@@ -7,14 +7,20 @@ using Wpf.Ui.Controls;
 
 namespace QLTV_Nhom13.Views.Windows
 {
-/*    /// <summary>
+    /// <summary>
     /// Interaction logic for ReaderInfoPage.xaml
     /// </summary>
-    public partial class ReaderInfoWindow : Window
+    public partial class ReaderInfoWindow 
     {
+        private readonly ReaderInfoViewModel _viewModel;
+
         public ReaderInfoWindow()
         {
             InitializeComponent();
+
+            _viewModel = new ReaderInfoViewModel();
+
+            DataContext = _viewModel;
         }
-    }*/
+    }
 }

@@ -7,12 +7,69 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="BorrowPage"
-    d:DataContext="{d:DesignInstance local:ReaderPage,
+    d:DataContext="{d:DesignInstance local:BorrowPage,
                                      IsDesignTimeCreatable=False}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="750"
+    d:DesignWidth="1100"
     ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
     ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
+
+    <StackPanel Margin="0 36 0 0">
+        <Grid Margin="0 0 0 12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:Button x:Name="AddBookBorrowFormButton" 
+                               Grid.Column="0" 
+                               Margin="0 24 8 12" 
+                               Content="Thêm phiếu" 
+                               Command="{Binding AddBookBorrowFormButton}" 
+                               Icon="{ui:SymbolIcon Add24}"/>
+
+            <ui:Button x:Name="RefreshBookBorrowFormButton" 
+                       Grid.Column="1" 
+                       Margin="0 24 8 12" 
+                       Content="Làm mới" 
+                       Command="{Binding BookBorrowFormRefreshCommand}" 
+                       HorizontalAlignment="Right" 
+                       Icon="{ui:SymbolIcon ArrowSync24}"/> 
+
+            <StackPanel Grid.Column="2" 
+                        HorizontalAlignment="Right" 
+                        Margin="0 12 0 0">
+                <ui:AutoSuggestBox x:Name="BookBorrowFormAutoSuggestBox"
+                                   PlaceholderText="Số phiếu, mã cuốn sách, mã độc giả" 
+                                   Margin="0 0 0 8"/>
+                <ComboBox MinWidth="300"
+                          SelectedIndex="0">
+                    <ComboBoxItem Content="Lọc tình trạng " />
+                    <ComboBoxItem Content="Green" />
+                    <ComboBoxItem Content="Red" />
+                    <ComboBoxItem Content="Yellow" />
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <ui:DataGrid x:Name="BookBorrowFormDataGrid" 
+                 Margin="0" 
+                 Height="Auto"
+                 ItemsSource="{Binding BookBorrowFormDataGrid, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Số phiếu mượn" Binding="{Binding BorrowId}" Width="Auto" />
+                <DataGridTextColumn Header="Mã cuốn sách" Binding="{Binding BookID}" Width="Auto" />
+                <DataGridTextColumn Header="Tên sách" Binding="{Binding BookName}" Width="Auto" />
+                <DataGridTextColumn Header="Mã độc giả" Binding="{Binding ReaderID}" Width="Auto" />
+                <DataGridTextColumn Header="Ngày mượn" Binding="{Binding BorrowDate}" Width="Auto" />
+                <DataGridTextColumn Header="Hạn trả" Binding="{Binding BorrowDueDate}" Width="Auto" />
+                <DataGridTextColumn Header="Ngày trả" Binding="{Binding ReturnDate}" Width="Auto" />
+                <DataGridTextColumn Header="Số tiền phạt" Binding="{Binding LateFee}" Width="Auto" />
+            </DataGrid.Columns>
+        </ui:DataGrid>
+
+    </StackPanel>
 
 </Page>
