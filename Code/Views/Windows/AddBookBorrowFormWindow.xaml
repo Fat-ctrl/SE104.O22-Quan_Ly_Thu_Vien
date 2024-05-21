@@ -10,7 +10,7 @@
         Title="AddBookBorrowFormWindow" 
         Height="1000" 
         Width="600"
-        d:DataContext="{d:DesignInstance local:MainWindow,
+        d:DataContext="{d:DesignInstance local:AddBookBorrowFormWindow,
                                  IsDesignTimeCreatable=True}"
         d:DesignHeight="1000"
         d:DesignWidth="600"

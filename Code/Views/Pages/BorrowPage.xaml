@@ -16,6 +16,7 @@
     mc:Ignorable="d">
 
     <StackPanel Margin="0 36 0 0">
+
         <Grid Margin="0 0 0 12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -36,7 +37,7 @@
                        Content="Làm mới" 
                        Command="{Binding BookBorrowFormRefreshCommand}" 
                        HorizontalAlignment="Right" 
-                       Icon="{ui:SymbolIcon ArrowSync24}"/> 
+                       Icon="{ui:SymbolIcon ArrowSync24}"/>
 
             <StackPanel Grid.Column="2" 
                         HorizontalAlignment="Right" 
@@ -58,7 +59,7 @@
                  Margin="0" 
                  Height="Auto"
                  ItemsSource="{Binding BookBorrowFormDataGrid, Mode=TwoWay}">
-            <DataGrid.Columns>
+            <ui:DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Số phiếu mượn" Binding="{Binding BorrowId}" Width="Auto" />
                 <DataGridTextColumn Header="Mã cuốn sách" Binding="{Binding BookID}" Width="Auto" />
                 <DataGridTextColumn Header="Tên sách" Binding="{Binding BookName}" Width="Auto" />
@@ -67,7 +68,7 @@
                 <DataGridTextColumn Header="Hạn trả" Binding="{Binding BorrowDueDate}" Width="Auto" />
                 <DataGridTextColumn Header="Ngày trả" Binding="{Binding ReturnDate}" Width="Auto" />
                 <DataGridTextColumn Header="Số tiền phạt" Binding="{Binding LateFee}" Width="Auto" />
-            </DataGrid.Columns>
+            </ui:DataGrid.Columns>
         </ui:DataGrid>
 
     </StackPanel>
